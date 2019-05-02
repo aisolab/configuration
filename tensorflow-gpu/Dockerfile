@@ -73,6 +73,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
          tzdata \
 	 vim \
 	 openssh-server \
+	 wget \
          locales &&\
      rm -rf /var/lib/apt/lists/*
 
