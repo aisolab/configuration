@@ -90,7 +90,7 @@ RUN conda clean -ya
 RUN echo "export PATH=/opt/conda/bin:\$PATH" > /etc/profile.d/conda.sh
 Run pip install --upgrade pip
 RUN pip install future scipy scikit-learn pandas cython matplotlib seaborn 
-RUN pip install tensorflow-gpu==1.13.1
+RUN pip install tensorflow-gpu==2.0.0-alpha0
 
 RUN rm -rf ~/.ssh/pip
 

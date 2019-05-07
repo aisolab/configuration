@@ -47,9 +47,10 @@ RUN conda install python=3.6 jupyter pip=9.0.1
 RUN conda clean -ya 
 RUN echo "export PATH=/opt/conda/bin:\$PATH" > /etc/profile.d/conda.sh
 
-Run pip install --upgrade pip
+RUN pip install --upgrade pip
 RUN pip install future scipy scikit-learn pandas cython matplotlib seaborn 
-Run pip install torch torchvision tb-nightly
+RUN pip install tensorflow==1.12.2
+RUN pip install torch torchvision tensorboardX
 RUN rm -rf ~/.cache/pip
 
 ENV PYTHONUNBUFFERED=1
