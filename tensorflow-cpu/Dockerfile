@@ -8,6 +8,13 @@ RUN echo "XKBMODEL=\"pc105\"\n \
           XKBVARIANT=\"\"\n \
           XKBOPTIONS=\"\"" > /etc/default/keyboard
 
+ENV TZ=Asia/Seoul
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN echo "XKBMODEL=\"pc105\"\n \
+          XKBLAYOUT=\"us\"\n \
+          XKBVARIANT=\"\"\n \
+          XKBOPTIONS=\"\"" > /etc/default/keyboard
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
          build-essential \
          cmake \
@@ -30,7 +37,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
          tzdata \
          locales \
          openssh-server \
-         wget \
          xauth \
          rsync &&\
      rm -rf /var/lib/apt/lists/*
@@ -47,10 +53,11 @@ RUN conda install python=3.6 jupyter pip=9.0.1
 RUN conda clean -ya 
 RUN echo "export PATH=/opt/conda/bin:\$PATH" > /etc/profile.d/conda.sh
 
-Run pip install --upgrade pip
-RUN pip install future scipy scikit-learn pandas cython matplotlib seaborn 
-Run pip install tensorflow==1.13.1
+RUN pip install tensorflow==2.0.0-alpha0
+RUN pip install scipy scikit-learn pandas cython matplotlib seaborn
+RUN pip install --upgrade pip
 RUN rm -rf ~/.cache/pip
 
 ENV PYTHONUNBUFFERED=1
 WORKDIR /root
+

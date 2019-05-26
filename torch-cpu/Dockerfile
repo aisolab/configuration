@@ -8,6 +8,13 @@ RUN echo "XKBMODEL=\"pc105\"\n \
           XKBVARIANT=\"\"\n \
           XKBOPTIONS=\"\"" > /etc/default/keyboard
 
+ENV TZ=Asia/Seoul
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN echo "XKBMODEL=\"pc105\"\n \
+          XKBLAYOUT=\"us\"\n \
+          XKBVARIANT=\"\"\n \
+          XKBOPTIONS=\"\"" > /etc/default/keyboard
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
          build-essential \
          cmake \
@@ -30,7 +37,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
          tzdata \
          locales \
          openssh-server \
-         wget \
          xauth \
          rsync &&\
      rm -rf /var/lib/apt/lists/*
@@ -44,14 +50,15 @@ RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-la
      rm ~/miniconda.sh
 ENV PATH /opt/conda/bin:$PATH
 RUN conda install python=3.6 jupyter pip=9.0.1
+RUN conda install pytorch=1.1.0 torchvision=0.3.0 -c pytorch
 RUN conda clean -ya 
 RUN echo "export PATH=/opt/conda/bin:\$PATH" > /etc/profile.d/conda.sh
 
+RUN pip install scipy scikit-learn pandas cython matplotlib seaborn
+RUN pip install future tb-nightly
 RUN pip install --upgrade pip
-RUN pip install future scipy scikit-learn pandas cython matplotlib seaborn 
-RUN pip install tensorflow==1.12.2
-RUN pip install torch torchvision tensorboardX
 RUN rm -rf ~/.cache/pip
 
 ENV PYTHONUNBUFFERED=1
 WORKDIR /root
+
