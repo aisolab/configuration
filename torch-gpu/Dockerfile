@@ -43,7 +43,7 @@ RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-la
      rm ~/miniconda.sh
 ENV PATH /opt/conda/bin:$PATH
 RUN conda install python=3.6 jupyter pip=9.0.1
-RUN conda install pytorch=1.1.0 torchvision=0.3.0 cudatoolkit=10.0 -c pytorch
+RUN conda install pytorch=1.2.0 torchvision=0.4.0 torchtext=0.4.0 cudatoolkit=10.0 -c pytorch
 RUN conda clean -ya 
 RUN echo "export PATH=/opt/conda/bin:\$PATH" > /etc/profile.d/conda.sh
 
