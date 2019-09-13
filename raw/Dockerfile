@@ -37,4 +37,3 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN locale-gen ko_KR.UTF-8
 ENV LANG="ko_KR.UTF-8" LANGUAGE="ko_KR:en" LC_ALL="ko_KR.UTF-8"
 WORKDIR /root
-
