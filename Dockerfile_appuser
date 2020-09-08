@@ -10,6 +10,7 @@ RUN apt-get update && \
 RUN locale-gen en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
+
 ARG UID
 RUN adduser --disabled-password --gecos "" appuser --uid ${UID:-1000}
 RUN adduser appuser sudo
@@ -34,4 +35,3 @@ RUN pip install --upgrade wheel
 
 # WORKDIR 설정
 WORKDIR /home/appuser/workspace
-
