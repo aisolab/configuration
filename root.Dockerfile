@@ -37,3 +37,8 @@ RUN echo  root:${PASSWD:-hephaestus} | chpasswd
 RUN sed -i 's_/usr/lib/openssh/sftp-server_internal-sftp_g' /etc/ssh/sshd_config
 RUn echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
 RUN echo "service ssh start" > /root/.bashrc
+
+# pyenv 추가 설정
+RUN echo 'export PYENV_ROOT="$HOME/.pyenv"' >> /root/.bashrc
+RUN echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> /root/.bashrc
+RUN echo 'eval "$(pyenv init -)"' >> /root/.bashrc
