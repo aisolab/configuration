@@ -22,8 +22,8 @@ RUN git clone https://github.com/pyenv/pyenv.git .pyenv
 
 # python 설치
 SHELL ["/bin/bash", "-c"]
-RUN pyenv install 3.8.5 && \
-	pyenv global 3.8.5 && \
+RUN pyenv install 3.7.9 && \
+	pyenv global 3.7.9 && \
 	pyenv rehash
 RUN pip install --upgrade pip setuptools whee
 
