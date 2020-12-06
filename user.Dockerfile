@@ -28,8 +28,7 @@ RUN git clone https://github.com/pyenv/pyenv.git .pyenv
 # python 설치
 SHELL ["/bin/bash", "-c"]
 RUN pyenv install 3.7.9 && \
-	pyenv global 3.7.9 && \
-	pyenv rehash
+	pyenv global 3.7.9
 
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 

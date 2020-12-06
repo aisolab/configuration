@@ -25,7 +25,7 @@ SHELL ["/bin/bash", "-c"]
 RUN pyenv install 3.7.9 && \
 	pyenv global 3.7.9 && \
 	pyenv rehash
-RUN pip install --upgrade pip setuptools whee
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 
 # WORKDIR 설정
